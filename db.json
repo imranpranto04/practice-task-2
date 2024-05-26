@@ -1,0 +1,44 @@
+{
+  "items": [
+    {
+      "id": "1",
+      "title": "Classic Backpack",
+      "brand": "Urban Traveler",
+      "price": 49.99,
+      "description": "A stylish and functional backpack perfect for everyday use. Features multiple compartments for organization and a durable design.",
+      "image_url": "https://www.batabd.com/cdn/shop/products/1_284ecdde-5cc3-49f8-b685-493a80dea7e5_1024x1024.jpg?v=1634115314"
+    },
+    {
+      "id": "2",
+      "title": "Adventure Backpack",
+      "brand": "Outdoor Explorer",
+      "price": 79.99,
+      "description": "Designed for outdoor adventures, this backpack is water-resistant and includes a hydration pack. Plenty of room for all your gear.",
+      "image_url": "https://www.batabd.com/cdn/shop/products/1_8885afc3-bb64-45bf-8b26-55674183983f_1024x1024.jpg?v=1663494895"
+    },
+    {
+      "id": "3",
+      "title": "Tech Backpack",
+      "brand": "Tech Savvy",
+      "price": 99.99,
+      "description": "Perfect for tech enthusiasts, this backpack has a padded laptop compartment and multiple pockets for gadgets and accessories.",
+      "image_url": "https://www.batabd.com/cdn/shop/products/1_df4ba22c-5ed4-4f46-b5fb-845c1a113166_1024x1024.jpg?v=1634114597"
+    },
+    {
+      "id": "4",
+      "title": "School Backpack",
+      "brand": "Edu Essentials",
+      "price": 29.99,
+      "description": "Ideal for students, this backpack offers ample space for books, notebooks, and other school supplies. Comfortable and lightweight.",
+      "image_url": "https://media.e-valy.com/cms/products/images/b345f3ff-cee0-4d35-986a-417127180315"
+    },
+    {
+      "id": "5",
+      "title": "Travel Backpack",
+      "brand": "Globetrotter",
+      "price": 89.99,
+      "description": "A versatile travel backpack with a spacious main compartment and secure pockets. Suitable for both short trips and long journeys.",
+      "image_url": "https://images.othoba.com/images/thumbs/0577977_share-this-product-arctic-hunter-b00531-casual-stylish-waterproof-lightweight-multi-pocket-youth-bac.jpeg"
+    }
+  ]
+}
