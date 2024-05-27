@@ -16,15 +16,19 @@ export default function AllProducts() {
 
   return (
     <>
-      <h1 className="mx-auto my-5">All Products</h1>
-      <div className="flex gap-4 flex-wrap justify-center ">
-        {products.map((item) => (
-          <SingleItemCardDash
-            item={item}
-            key={item.id}
-            onDelete={handleDeleteProduct}
-          />
-        ))}
+      <div className="w-full">
+        <h1 className="mx-auto my-5 bg-blue-500 p-5 text-white mb-6 text-center text-2xl">
+          All Products
+        </h1>
+        <div className="flex gap-4 flex-wrap justify-center ">
+          {products.map((item) => (
+            <SingleItemCardDash
+              item={item}
+              key={item.id}
+              onDelete={handleDeleteProduct}
+            />
+          ))}
+        </div>
       </div>
     </>
   );

@@ -1,5 +1,7 @@
 import React from "react";
 import { json } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function AddProduct() {
   const handlesubmit = async (e) => {
@@ -36,6 +38,8 @@ export default function AddProduct() {
         console.log(data);
         e.target.reset();
       });
+
+    toast("Add Product successfully!");
   };
 
   return (
@@ -103,6 +107,8 @@ export default function AddProduct() {
                 value="Add Product"
               />
             </div>
+
+            <ToastContainer />
           </form>
         </div>
       </div>

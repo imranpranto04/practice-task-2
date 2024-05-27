@@ -115,7 +115,7 @@ export default function EditProduct() {
 
             <div>
               <input
-                className="btn mt-3 w-3/4"
+                className="btn btn-accent mt-3 w-1/2"
                 type="submit"
                 value="Add Product"
               />
