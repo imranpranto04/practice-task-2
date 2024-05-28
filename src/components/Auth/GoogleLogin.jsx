@@ -45,21 +45,21 @@ export default function GoogleLogin() {
 
   return (
     <div>
-      {/* {user ? ( */}
-      <button
-        onClick={SignOutGoogle}
-        className=" px-5 py-3 bg-red-500 text-white w-full rounded-lg"
-      >
-        Sign out
-      </button>
-      {/* ) : ( */}
-      <button
-        onClick={signInWithGoogle}
-        className=" px-5 py-3 bg-yellow-500 text-white w-full rounded-lg"
-      >
-        Google Login
-      </button>
-      {/* )} */}
+      {user ? (
+        <button
+          onClick={SignOutGoogle}
+          className=" px-5 py-3 bg-red-500 text-white w-full rounded-lg"
+        >
+          Sign out from google
+        </button>
+      ) : (
+        <button
+          onClick={signInWithGoogle}
+          className=" px-5 py-3 bg-yellow-500 text-white w-full rounded-lg"
+        >
+          Google Login
+        </button>
+      )}
     </div>
   );
 }

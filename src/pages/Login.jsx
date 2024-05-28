@@ -1,30 +1,19 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import GoogleLogin from "../components/Auth/GoogleLogin";
+import { AuthContext } from "../contextProvieders/AuthProvider";
+import SignOutBtn from "../components/Auth/SignOutBtn";
 
 export default function Login() {
   // console.log("Google Use", user);
 
+  const { user } = useContext(AuthContext);
+
+  const naigate = useNavigate();
+
   return (
     <>
       <div className="hero min-h-screen bg-base-200">
-        {/* {user ? ( */}
-        {/* <div className="card w-96 bg-base-100 shadow-xl">
-            <div className="card-body">
-              <h2 className="card-title">
-                User Name: {user?.user?.displayName}
-              </h2>
-              <p>User email: {user?.user?.email}</p>
-              <div className="mx-auto">
-                <img
-                  className="w-12 rounded-full "
-                  src={user?.user?.photoURL}
-                  alt=""
-                />
-              </div>
-            </div>
-          </div> */}
-        {/* ) : ( */}
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
             <h1 className="text-5xl font-bold">Login now!</h1>
@@ -68,14 +57,21 @@ export default function Login() {
               <div className="form-control mt-6">
                 {/* <button className="btn btn-primary">Login</button> */}
                 <div>
-                  <button className=" px-5 py-3 bg-yellow-500 text-white w-full rounded-lg">
-                    Login
-                  </button>
+                  {user ? (
+                    <div>
+                      {naigate(`/dashboard`)}
+                      <SignOutBtn />
+                    </div>
+                  ) : (
+                    <button className=" px-5 py-3 my-5 bg-yellow-500 text-white w-full rounded-lg">
+                      Login
+                    </button>
+                  )}
                 </div>
               </div>
-            </form>
 
-            <GoogleLogin />
+              <GoogleLogin />
+            </form>
           </div>
         </div>
         {/* )} */}

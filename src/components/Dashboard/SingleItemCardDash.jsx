@@ -1,18 +1,48 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Swal from "sweetalert2";
 
+// toast.configure();
 export default function SingleItemCardDash({ item, onDelete }) {
   const { id, title, brand, price, description, image_url } = item;
 
-  const handleDelete = async () => {
-    await fetch(`http://localhost:3000/items/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        onDelete(id);
-      });
+  const handleDelete = () => {
+    // Show a confirmation modal
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You want to delete this product!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        // If the user confirms, delete the item
+        await deleteItem();
+      }
+    });
+  };
+
+  const deleteItem = async () => {
+    try {
+      await fetch(`http://localhost:3000/items/${id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          onDelete(id);
+        });
+
+      // Show success toast notification
+      toast.success("Product added successfully!");
+    } catch (error) {
+      console.error("Error deleting product:", error);
+      toast.error("Failed to delete product.");
+    }
   };
 
   return (
@@ -42,6 +72,7 @@ export default function SingleItemCardDash({ item, onDelete }) {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }

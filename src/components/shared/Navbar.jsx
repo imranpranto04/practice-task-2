@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaHamburger } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contextProvieders/AuthProvider";
+import SignOutBtn from "../Auth/SignOutBtn";
 
 export default function Navbar() {
+  const { user } = useContext(AuthContext);
+
   return (
     <>
       <div className="navbar bg-base-100">
@@ -57,24 +61,35 @@ export default function Navbar() {
             <li>
               <Link to={"/about"}>About</Link>
             </li>
-            {/* <li>
+            <li>
               <Link to={"/services"}>Services</Link>
             </li>
             <li>
               <Link to={"/contact"}>Contact</Link>
-            </li> */}
+            </li>
             <li>
               <Link to={"/dashboard"}>Dashboard</Link>
             </li>
           </ul>
         </div>
         <div className="navbar-end">
-          <Link to={"/login"} className="btn mr-3 bg-orange-500 text-white">
-            Login
-          </Link>
-          <Link to={"/register"} className="btn bg-red-600 text-white">
-            Register
-          </Link>
+          {user ? (
+            <>
+              <Link to={"/login"} className="btn mr-3 bg-orange-500 text-white">
+                {user.displayName}
+              </Link>
+              <SignOutBtn />
+            </>
+          ) : (
+            <>
+              <Link to={"/login"} className="btn mr-3 bg-orange-500 text-white">
+                Login
+              </Link>
+              <Link to={"/register"} className="btn bg-red-600 text-white">
+                Register
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </>

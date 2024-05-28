@@ -11,6 +11,9 @@ import AllProducts from "../components/Dashboard/AllProducts";
 import AddProduct from "../pages/AddProduct";
 import EditProduct from "../pages/EditProduct";
 import ProductDetails from "../pages/ProductDetails";
+import PrivateRoute from "../pages/PrivateRoute";
+import Services from "../pages/Services";
+import Contact from "../pages/Contact";
 
 export const router = createBrowserRouter([
   {
@@ -20,15 +23,28 @@ export const router = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       { path: "about", element: <About /> },
+      { path: "services", element: <Services /> },
+      { path: "contact", element: <Contact /> },
       { path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
     ],
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
     children: [
-      { path: "/dashboard", element: <Dashboard /> },
+      {
+        path: "/dashboard",
+        element: (
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
+        ),
+      },
       {
         path: "/dashboard/allProducts",
         element: <AllProducts />,

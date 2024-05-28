@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Swal from "sweetalert2";
+
+// toast.configure();
 
 export default function EditProduct() {
   const backpackData = useLoaderData();
+
+  const [getAlert, setGetAlert] = useState(false);
 
   const [id, setId] = useState(backpackData.id);
   const [title, setTitle] = useState(backpackData.title);
@@ -32,15 +39,54 @@ export default function EditProduct() {
       image_url,
     };
 
-    console.log("FOrm data", formData);
+    console.log("Form data", formData);
 
-    await fetch(`http://localhost:3000/items/${backpackData.id}`, {
-      method: "PATCH",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify(formData),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+    handleModal(formData);
+  };
+
+  // my code
+  const handleModal = (formData) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You want to edit this product!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Edit!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Edited!",
+          text: "Your product has been edited.",
+          icon: "success",
+        });
+
+        updateProduct(formData);
+      }
+    });
+  };
+
+  const updateProduct = async (formData) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/items/${backpackData.id}`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      const data = await response.json();
+      console.log(data);
+
+      // Show success toast notification
+      toast.success("Product updated successfully!");
+    } catch (error) {
+      console.error("Error updating product:", error);
+      toast.error("Failed to update product.");
+    }
   };
 
   return (
@@ -117,9 +163,11 @@ export default function EditProduct() {
               <input
                 className="btn btn-accent mt-3 w-1/2"
                 type="submit"
-                value="Add Product"
+                value="Edit Product"
               />
             </div>
+
+            <ToastContainer />
           </form>
         </div>
       </div>
